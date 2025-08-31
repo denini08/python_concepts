@@ -1,6 +1,7 @@
 # Python Concepts
 Repo for general concepts for working with python (e.g. regex, files operations, working with DB's)
 
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![CI](https://github.com/MKaczkow/python_concepts/actions/workflows/ci.yml/badge.svg)](https://github.com/MKaczkow/python_concepts/actions/workflows/ci.yml)
@@ -27,3 +28,4 @@ Repo for general concepts for working with python (e.g. regex, files operations,
 19. [Steganography](./steganography)
 20. [Code profiling](./profiling_code)
 21. [Managing dependencies with uv](./uv_package_manager/)
+22. [Types and more](./types_and_more/)
