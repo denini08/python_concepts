@@ -3,6 +3,11 @@ import random
 import pytest
 from employee import Employee
 
+# seeded at import time so parametrize decorator gets deterministic values (avoid )
+# without seed, random.randint() produces different values each run (flaky tests)
+_rng = random.Random(42)
+_random_test_cases = [(_rng.randint(0, 100),) * 2 for _ in range(9)]
+
 
 # pytest doesn't require TestCase to inherit from anything
 class EmployeeTestCase:
@@ -30,15 +35,6 @@ def test_pay(employee):
     assert 2137 == employee.pay
 
 
-# fixture to ensure reproducible random values
-# without seed, random.randint() produces different values each run (flaky tests)
-@pytest.fixture(scope="session", autouse=True)
-def set_random_seed():
-    """make tests reproducible by seeding the random number generator."""
-    random.seed(42)
-    yield
-
-
 # test can be parametrized using built-in marker
 @pytest.mark.parametrize(
     "given_value, expected_value",
@@ -49,15 +45,7 @@ def set_random_seed():
         (100, 100),
         (1999, 1999),
         (2022, 2022),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
-        tuple([random.randint(0, 100)] * 2),
+        *_random_test_cases,
     ],
 )
 def test_very_simple(given_value, expected_value):
